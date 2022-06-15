@@ -13,5 +13,8 @@ namespace Infrastructure.Data
         Task<List<T>> GetAllAsync();
         Task<List<T>> GetAllAsyncWithSpec(ISpecification<T> spec);
         Task<T> GetEntityAsyncWithSpec(ISpecification<T> spec);
+
+        Task<int> CountAsync(ISpecification<T> spec);
+
     }
 }
