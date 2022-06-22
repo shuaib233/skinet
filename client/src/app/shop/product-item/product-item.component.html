@@ -1,0 +1,18 @@
+<div class="card mb-4 box-shadow">
+    <img class="card-img-top bg-light" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" 
+    src="{{product.pictureURL}}" data-holder-rendered="true">
+    <div class="card-body">
+        <a routerLink="/shop/{{product.id}}" >
+            {{product.name}}
+        </a>
+        <span>
+            {{product.price | currency}}
+        </span>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group mt-auto">
+          <button type="button" class="btn btn-outline-secondary fa fa-shopping-cart"></button>
+          <button type="button" routerLink="/shop/{{product.id}}"  class="btn btn-outline-secondary mr-2 ml-2">View</button>
+        </div>
+      </div>
+    </div>
+  </div>

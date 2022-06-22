@@ -1,0 +1,73 @@
+<div class="container">
+
+    <div class="row">
+        <section class="col-3">
+            <h5 class="alert-info my-3">Sort</h5>
+            <!-- <select class="list-group"  [(ngModel)]="sortSelected" (change)="onSortSelection($event.target.value)" -->
+
+            <select class="list-group"  [(ngModel)]="shopParams.sortSelected" 
+             (ngModelChange)="onSortChange($event)">
+                <option *ngFor="let sort of sortOptions" [value]="sort.value"> 
+                     {{sort.name}}
+                </option>
+              </select>
+
+            <h5 class="alert-info my-3">Brands</h5>
+            <ul class="list-group">
+                <li class="list-group-item" 
+                *ngFor="let brand of brands" 
+                [class.active]="brand.id === this.shopParams.brandIdSelected"
+                [value]="brand.id"
+                (click)="onBrandSelection(brand.id)">
+                {{brand.name}}</li>
+              </ul>
+
+              <h5 class="alert-info my-3">Types</h5>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let type of types"
+                [class.active]="type.id === this.shopParams.typeIdSelected"
+                [value]="type.id"
+                (click)="onTypeSelection(type.id)">
+                    {{type.name}}</li>
+              </ul>
+
+        </section>
+    <section class="col-9">
+        <div class="row">
+            <div class="alert-danger col-6">
+            <app-paging-header
+            [totalCount]="this.RecordsCount"
+            [pageNumber]="this.shopParams.pageNumber"
+            [pageSize]="this.shopParams.pageSize"
+            ></app-paging-header>
+            </div>
+        <div class="input-group col-6">
+            <div class="form-outline">
+              <input [(ngModel)]="shopParams.searchTerm" (keyup)="getProducts()" type="search" id="form1" class="form-control" />
+              <label class="form-label" for="form1">Search</label>
+            </div>
+            <button (click)="getProducts()" type="button" class="btn btn-primary mx-1" style="height: 38px;">
+              Search
+            </button>
+            <button type="button" class="btn btn-info ml-2 mx-2" style="height: 38px;">
+                Reset
+              </button>
+          </div>
+        </div>
+
+        <div class="row">
+        <div class="col-3" *ngFor="let prod of products">
+          <app-product-item [product]="prod"></app-product-item>
+        </div>
+    </div>
+
+    <app-pager [totalCount]="this.RecordsCount" [pageSize]="this.shopParams.pageSize"
+    (pageChanged)="onPageChanged($event)"></app-pager>
+
+
+    </section>
+  
+     
+
+    </div>
+  </div>
